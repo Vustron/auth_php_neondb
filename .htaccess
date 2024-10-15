@@ -1,0 +1,21 @@
+# Enable URL rewriting
+RewriteEngine On
+
+# API requests are redirected to routes.php
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^LogInSystem2/api/(.*)$ LogInSystem2/api/routes.php [L,QSA]
+
+# All other requests are redirected to index.php
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^LogInSystem2/(.*)$ LogInSystem2/index.php [L,QSA]
+
+# Set the default index file
+DirectoryIndex index.php
+
+# Deny access to .htaccess file itself
+<Files .htaccess>
+    Order allow,deny
+    Deny from all
+</Files>
